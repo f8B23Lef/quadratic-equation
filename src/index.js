@@ -1,24 +1,22 @@
 module.exports = function solveEquation(equation) {
 
-  equation = equation.replace(/\s/g, "");
-
-  var regExp = /([+-]?\d+)\*x\^2([+-]?\d+)\*x([+-]?\d+)/;
-  var matchArr = equation.match(regExp);
+  const regExp = /([+-]?\d+)\*x\^2([+-]?\d+)\*x([+-]?\d+)/;
+  const matchArr = equation.replace(/\s/g, "").match(regExp);
   
-  var a = matchArr[1];
-  var b = matchArr[2];
-  var c = matchArr[3];
+  const a = matchArr[1];
+  const b = matchArr[2];
+  const c = matchArr[3];
  
   /*
-	var parts = equation.split("*x^2");
-  var a = parts[0];
-	var b = parts[1].split("*x")[0];
-  var c = parts[1].split("*x")[1];
+	const parts = equation.split("*x^2");
+  const a = parts[0];
+	const b = parts[1].split("*x")[0];
+  const c = parts[1].split("*x")[1];
   */
 
-  var x1, x2;
+ let x1, x2;
 
-  var d = Math.pow(b,2) - 4 * a * c;
+ const d = Math.pow(b,2) - 4 * a * c;
 	
   if(d > 0) {
     x1 = (-b + Math.sqrt(d)) / (2 * a);
@@ -28,11 +26,9 @@ module.exports = function solveEquation(equation) {
     x2 = x1;
   } 
       
-  var resArr = [];
+  const resArr = [];
   resArr.push(Math.round(x1), Math.round(x2));
-  resArr.sort(function(a, b) {
-    return a - b
-  });
+  resArr.sort((a, b) =>  a - b);
 	
   return resArr;
 }
